@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Employee</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="sidebar">
+            <h2>EMS</h2>
+            <a href="/">Dashboard</a>
+            <a href="/employees">Employees</a>
+            <a href="/add-employee" class="active">Add Employee</a>
+        </div>
+
+        <div class="main-content">
+
+            <div class="page-header">
+                <div>
+                    <h1>Add New Employee</h1>
+                    <p>Enter employee information below</p>
+                </div>
+            </div>
+
+            <div class="form-container">
+
+                <form action="/add" method="post">
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name"
+                               placeholder="Enter employee name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email"
+                               placeholder="Enter email address" required>
+                        <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Department</label>
+                        <input type="text" name="department"
+                               placeholder="Enter department" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="number" name="salary"
+                               placeholder="Enter salary"
+                               step="0.01" min="1" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn">
+                            Save Employee
+                        </button>
+
+                        <a href="/employees" class="cancel-btn">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

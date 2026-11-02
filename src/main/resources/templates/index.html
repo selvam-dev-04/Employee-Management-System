@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Employee Management System</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>EMS</h2>
+            <a href="/" class="active">Dashboard</a>
+            <a href="/employees">Employees</a>
+            <a href="/add-employee">Add Employee</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Header -->
+            <div class="top-header">
+                <div>
+                    <h2>Employee Management System</h2><br>
+                    <p>Manage your workforce efficiently</p>
+                </div>
+
+                <div class="admin-profile">
+                    <div class="profile-icon">A</div>
+                    <span>Admin</span>
+                </div>
+            </div>
+
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div>
+                    <h1>Welcome Back, Admin!</h1>
+                    <p>Here's what's happening with your organization today.</p>
+                </div>
+
+                <a href="/add-employee" class="welcome-btn">
+                    + Add Employee
+                </a>
+            </div>
+
+            <!-- Department Overview -->
+            <div class="department-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Department Overview</h2>
+                        <p>Employee distribution across departments</p>
+                    </div>
+
+                    <span class="overview-label">
+                        Live Database Data
+                    </span>
+                </div>
+
+                <div class="department-grid">
+
+                    <div class="department-card"
+                         th:each="dept : ${departmentCounts}">
+
+                        <div class="department-top">
+                            <div class="department-icon">🏢</div>
+                            <span class="dept-label">DEPARTMENT</span>
+                        </div>
+
+                        <h3 th:text="${dept.key}">
+                            IT Department
+                        </h3>
+
+                        <div class="employee-count">
+                            <h1 th:text="${dept.value}">0</h1>
+                            <span>Employees</span>
+                        </div>
+
+                        <div class="department-footer">
+                            <span>Employee strength</span>
+
+                            <span class="count-badge"
+                                  th:text="${dept.value} + ' Members'">
+                                0 Members
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-departments"
+                         th:if="${#maps.isEmpty(departmentCounts)}">
+                        No department records found.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+```
